@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Apoia-se</title>
+    <title>Apoia-se Brasil de Fato</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = {
             theme: {                                    // O "theme" é um objeto que recebe as personalizações
@@ -16,13 +18,26 @@
                     },
                 },
                 fontFamily: {                        // Observe que as fontes são organizadas em um array
-                    inter: ['Source Sans Pro', 'sans-serif']
+                    sans: ['Source Sans Pro', 'sans-serif'],
+                    serifada: ['Merriweather', "serif"]
 
                 }
             }
         }
     </script>
     <style>
+        /* Underline piscante */
+        @keyframes underlinepisc{
+				0%{opacity: 0;}
+				49%{opacity: 0;}
+				50%{opacity: 1;}
+				100%{opacity: 1;}
+			}
+        
+        .underline {
+			animation: underlinepisc 2s infinite;
+		}
+
         /* Tab content - closed */
         .tab-content {
             max-height: 0;
@@ -116,9 +131,12 @@
         
         <!-- Por que ser um parceiro(a)? -->
         <div class="px-3 lg:w-5/12 m-auto">
-            <h1 class="text-2xl mb-5"> Por que ser <br>um parceiro (a)?<spam
-                    class="text-2xl text-bdf font-black">_</spam>
-            </h1>
+
+            <!-- Titulo 1 - Por que ser um parceiro(a)? -->
+            <div class="flex flex-row mb-12">
+                <div><h1><spam class="text-2xl mb-5 font-serifada" id="tl1"></spam><spam class="text-2xl text-bdf font-black underline">_</spam></h1> </div>
+            </div>
+
             <p> Nosso jornalismo não sai das reuniões do patronato, dos mega-empresários e dos espaços de poder da
                 classe dominante e do pensamento hegemônico. Praticamos um jornalismo feito pelo povo e para o povo.
                 Fazer jornalismo fora dos espaços tradicionais de poder - e consequentemente de concentração de renda, é
@@ -133,11 +151,12 @@
             Apoie a visão popular dos fatos.
             Apoie o jornalismo do Brasil de Fato
         </div>
-
-        <!-- Apoie o jornalismo do Brasil de Fato -->
-        <h1 class="text-2xl mb-5 lg:w-5/12 m-auto px-3 mt-10"> Apoie o jornalismo <br> do Brasil de Fato <spam class="text-2xl text-bdf font-black ">_</spam>
-        </h1>
         
+        <!-- Titulo 2 - Apoie o jornalismo do Brasil de Fato -->
+        <div class="flex flex-row m-3 mt-10">
+            <div><h1><spam class="text-2xl mb-5 font-serifada" id="tl2"></spam><spam class="text-2xl text-bdf font-black underline">_</spam></h1> </div>
+        </div>         
+            
         <!-- tipos de apoio -->
         <div class="bg-bgclaro pt-3 pb-5">
             <div class="lg:w-5/12 m-auto px">
@@ -1418,7 +1437,10 @@
 
         <!-- Sobre o Brasil de Fato -->
         <div class="px-3 lg:w-5/12 m-auto">
-            <h1 class="text-2xl mb-5 mt-10"> Sobre o Brasil de Fato <spam class="text-2xl text-bdf font-black">_</spam></h1>
+            <!-- Titulo 3 - Sobre o Brasil de Fato -->
+            <div class="flex flex-row mt-12 mb-6">
+                <div><h1><spam class="text-2xl mb-5 font-serifada" id="tl3"></spam><spam class="text-2xl text-bdf font-black underline">_</spam></h1> </div>
+            </div>    
             O Brasil de Fato é uma rede de jornalismo multiplataforma. Há duas décadas ocupamos lugar de destaque na
             produção de reportagem e análise política, social e cultural do Brasil e do mundo.
             Estamos nas ruas, na internet, nas redes sociais, nos grupos de transmissão, nas rádios, nos agregadores de
@@ -1452,5 +1474,59 @@
     </main>
 
 </body>
+<script>
+    function escreveTitulo(){
+        var tl1Position = tl1.getBoundingClientRect().top
+        var tl2Position = tl2.getBoundingClientRect().top
+        var tl3Position = tl3.getBoundingClientRect().top
+        var windowHeight = window.innerHeight
+        var tl1Conteudo = ["Po","r ", "que ", "se", "r ", "um ", "par", "cei", "ro", "(","a)","?"]
+        var tl2Conteudo = ["Apo","ie ", "o ", "jor", "na", "lis", "mo ", "do ", "Br", "a","sil"," de ","fat","o"]
+        var tl3Conteudo = ["S","o", "bre ", "o ", "Br", "as", "il ", "de ", "fa", "t","o"]
+        
+        console.log("tl1 Position" + tl1.getBoundingClientRect().top) //Pega a posição do topo do elemento
+        console.log("tl2 Position" + tl2.getBoundingClientRect().top) //Pega a posição do topo do elemento
+        console.log("tl3 Position" + tl3.getBoundingClientRect().top) //Pega a posição do topo do elemento
+        console.log("jumpBar1 " + jumpBar1)
+        console.log("jumpBar2 " + jumpBar2)
+        console.log("jumpBar3 " + jumpBar3)
+        console.log("marcador1 " + marcador1)
+        console.log("marcador2 " + marcador2)
+        console.log("marcador3 " + marcador3)
+        console.log("-- -- -- -- -- --")
+        
+        if (tl1Position + 100 < jumpBar1 && marcador1 < tl1Conteudo.length){
+            document.getElementById("tl1").insertAdjacentHTML("beforeend", tl1Conteudo[marcador1]) 
+            jumpBar1 -= Math.random() * 35
+            marcador1 += 1
+        } else if (tl2Position + 100 < jumpBar2 && marcador2 < tl2Conteudo.length){
+            console.log("2 - poroto")
+            document.getElementById("tl2").insertAdjacentHTML("beforeend", tl2Conteudo[marcador2]) 
+            jumpBar2 -= Math.random() * 35
+            marcador2 += 1
+        } else if (tl3Position + 100 < jumpBar3 && marcador3 < tl3Conteudo.length){
+            console.log("3 - poroto")
+            document.getElementById("tl3").insertAdjacentHTML("beforeend", tl3Conteudo[marcador3]) 
+            jumpBar3 -= Math.random() * 35
+            marcador3 += 1
+        } else{
+            console.log("4- poroto")
+        }
+    }
+
+    var tl1 = document.getElementById("tl1")
+    var tl2 = document.getElementById("tl2")
+    var tl3 = document.getElementById("tl3")
+    var tl1Position = tl1.getBoundingClientRect().top //Pega a posição do topo do elemento
+    var tl2Position = tl2.getBoundingClientRect().top //Pega a posição do topo do elemento
+    var tl3Position = tl3.getBoundingClientRect().top //Pega a posição do topo do elemento
+    var jumpBar1 = window.innerHeight
+    var jumpBar2 = window.innerHeight
+    var jumpBar3 = window.innerHeight
+    var marcador1 = 0
+    var marcador2 = 0
+    var marcador3 = 0
+    document.addEventListener("scroll", escreveTitulo)
+</script>
 
 </html>
